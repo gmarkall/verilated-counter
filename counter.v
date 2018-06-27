@@ -1,6 +1,7 @@
 module counter
 #(
   // Parameter list
+  parameter CYCLES_PER_COUNT = 8
  )
 (
   // Port list
@@ -22,7 +23,7 @@ module counter
       else
         if (enable_i)
           begin
-            if (internal_count == 7)
+            if (internal_count == (CYCLES_PER_COUNT - 1))
               begin
                 count_o <= count_o + 1;
                 internal_count <= 0;

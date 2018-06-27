@@ -12,6 +12,7 @@ module top
 
   counter
    #(
+     .CYCLES_PER_COUNT ( 4 )
     )
   counter_i
     (
