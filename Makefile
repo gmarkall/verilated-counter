@@ -10,7 +10,7 @@ VLIB = $(VDIR)/Vtop__ALL.a
 VOBJS = $(VDIR)/verilated.o $(VDIR)/verilated_vcd_c.o
 
 all:
-	$(VERILATOR) $(VSRC) --top-module top --cc --trace
+	$(VERILATOR) $(VSRC) --top-module top --cc --trace -Wno-BLKANDNBLK
 	$(MAKE) -C $(VDIR) -f Vtop.mk Vtop__ALL.a verilated.o verilated_vcd_c.o
 	g++ $(CPPFLAGS) $(CXXFLAGS) -c testbench.cpp
 	g++ -o testbench testbench.o $(VLIB) $(VOBJS)

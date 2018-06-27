@@ -23,13 +23,18 @@ void clockModel()
   traceFile->dump (simTime);
 }
 
+void outputState()
+{
+    cout << "Counter value is " << ((uint32_t)model->count) << endl;
+    uint32_t internal = model->top->counter_i->read_internal_counter();
+    cout << "Internal value is " << internal << endl;
+}
+
 void cycleAndOutput(size_t cycles)
 {
   for (size_t i = 0; i < cycles; i++)
   {
-    cout << "Counter value is " << ((uint32_t)model->count) << endl;
-    uint32_t internal = model->top->counter_i->read_internal_counter();
-    cout << "Internal value is " << internal << endl;
+    outputState();
     clockModel();
   }
 }
@@ -62,6 +67,21 @@ int main(void)
   model->enable = 1;
 
   cycleAndOutput(100);
+
+  cout << endl << "Prior to setting internal counter, state is:" << endl;
+  outputState();
+
+  cout << endl << "Setting internal counter to 2..." << endl;
+
+  model->top->counter_i->write_internal_counter(2);
+  model->eval();
+  outputState();
+
+  cout << endl << "Clocking model for a few more cycles..." << endl;
+  // We clock the model here because we already outputted the current
+  // state once - this advances things so we don't output the same state twice
+  clockModel();
+  cycleAndOutput(4);
 
   traceFile->close();
 
