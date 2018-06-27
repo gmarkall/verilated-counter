@@ -1,0 +1,5 @@
+*.o
+*.vcd
+*.swp
+obj_dir
+testbench
