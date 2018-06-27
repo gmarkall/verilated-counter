@@ -33,4 +33,11 @@ module counter
           end
     end
 
+  function [7:0] read_internal_counter;
+    /* verilator public */
+    begin
+      read_internal_counter = internal_count;
+    end
+  endfunction
+
 endmodule

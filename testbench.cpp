@@ -3,6 +3,7 @@
 #include "verilated.h"
 #include "verilated_vcd_c.h"
 #include "Vtop.h"
+#include "Vtop__Syms.h"
 
 using namespace std;
 
@@ -27,6 +28,8 @@ void cycleAndOutput(size_t cycles)
   for (size_t i = 0; i < cycles; i++)
   {
     cout << "Counter value is " << ((uint32_t)model->count) << endl;
+    uint32_t internal = model->top->counter_i->read_internal_counter();
+    cout << "Internal value is " << internal << endl;
     clockModel();
   }
 }
