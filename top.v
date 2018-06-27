@@ -6,6 +6,7 @@ module top
   // Port list
   input        clock,
   input        reset,
+  input        enable,
   output [7:0] count
 );
 
@@ -14,9 +15,10 @@ module top
     )
   counter_i
     (
-      .clock_i ( clock ),
-      .reset_i ( reset ),
-      .count_o ( count )
+      .clock_i  ( clock  ),
+      .reset_i  ( reset  ),
+      .enable_i ( enable ),
+      .count_o  ( count  )
     );
 
 endmodule

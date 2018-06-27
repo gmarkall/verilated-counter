@@ -22,6 +22,15 @@ void clockModel()
   traceFile->dump (simTime);
 }
 
+void cycleAndOutput(size_t cycles)
+{
+  for (size_t i = 0; i < cycles; i++)
+  {
+    cout << "Counter value is " << ((uint32_t)model->count) << endl;
+    clockModel();
+  }
+}
+
 int main(void)
 {
   Verilated::traceEverOn(true);
@@ -35,18 +44,21 @@ int main(void)
 
   // Initialise the counter to 0
   model->reset = 1;
+  model->enable = 0;
   clockModel();
   model->reset = 0;
 
   cout << "Initial counter value is " << ((uint32_t)model->count) << endl;
 
-  cout << "Clocking model and counting..." << endl;
 
-  for (size_t i = 0; i < 10; i++)
-  {
-    clockModel();
-    cout << "Counter value is " << ((uint32_t)model->count) << endl;
-  }
+  cout << endl << "Clocking model without enabling counter..." << endl;
+
+  cycleAndOutput(10);
+
+  cout << endl << "Clocking model with counter enabled..." << endl;
+  model->enable = 1;
+
+  cycleAndOutput(100);
 
   traceFile->close();
 
