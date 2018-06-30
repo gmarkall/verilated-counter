@@ -12,6 +12,8 @@ To install on Ubuntu:
 apt install build-essential verilator gtkwave
 ```
 
+To install on Fedora:
+
 ```
 dnf install make automake gcc-c++ verilator gtkwave
 ```
