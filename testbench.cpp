@@ -11,23 +11,11 @@ Vtop *model;
 VerilatedVcdC *traceFile;
 vluint64_t simTime = 0;
 
-void clockModel()
-{
-  model->clock = 0;
-  model->eval();
-  simTime += 5;
-  traceFile->dump (simTime);
-  model->clock = 1;
-  model->eval();
-  simTime += 5;
-  traceFile->dump (simTime);
-}
+/* Add code the clockModel function here */
 
 void outputState()
 {
-    cout << "Counter value is " << ((uint32_t)model->count) << endl;
-    uint32_t internal = model->top->counter_i->read_internal_counter();
-    cout << "Internal value is " << internal << endl;
+  /* Add code to output state */
 }
 
 void cycleAndOutput(size_t cycles)
@@ -44,9 +32,7 @@ int main(void)
   Verilated::traceEverOn(true);
 
   model = new Vtop;
-  traceFile = new VerilatedVcdC;
-  model->trace(traceFile, 99);
-  traceFile->open("model.vcd");
+  /* Instantiate trace file here */
 
   cout << "Initialising counter..." << endl;
 
@@ -57,7 +43,6 @@ int main(void)
   model->reset = 0;
 
   cout << "Initial counter value is " << ((uint32_t)model->count) << endl;
-
 
   cout << endl << "Clocking model without enabling counter..." << endl;
 
@@ -73,9 +58,7 @@ int main(void)
 
   cout << endl << "Setting internal counter to 2..." << endl;
 
-  model->top->counter_i->write_internal_counter(2);
-  model->eval();
-  outputState();
+  /* Call task to set internal counter here */
 
   cout << endl << "Clocking model for a few more cycles..." << endl;
   // We clock the model here because we already outputted the current
@@ -83,9 +66,7 @@ int main(void)
   clockModel();
   cycleAndOutput(4);
 
-  traceFile->close();
-
-  delete traceFile;
+  /* Close the tracefile here */
   delete model;
 
   return 0;

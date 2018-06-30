@@ -4,10 +4,7 @@ module top
  )
 (
   // Port list
-  input        clock,
-  input        reset,
-  input        enable,
-  output [7:0] count
+  /* Fill in inputs and outputs to module */
 );
 
   counter
@@ -16,10 +13,8 @@ module top
     )
   counter_i
     (
-      .clock_i  ( clock  ),
-      .reset_i  ( reset  ),
-      .enable_i ( enable ),
-      .count_o  ( count  )
+      /* Connect inputs and outputs of counter to
+       * top module inputs and outputs */
     );
 
 endmodule

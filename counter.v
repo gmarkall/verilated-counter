@@ -26,19 +26,8 @@ module counter
     end
   end
 
-  function [7:0] read_internal_counter;
-    /* verilator public */
-    begin
-      read_internal_counter = internal_count;
-    end
-  endfunction
+  /* Add a function to read the internal counter here */
 
-  task write_internal_counter;
-    /* verilator public */
-    input [7:0] new_internal_count;
-    begin
-      internal_count = new_internal_count;
-    end
-  endtask
+  /* Add a task to write to the internal counter here */
 
 endmodule

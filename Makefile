@@ -14,3 +14,6 @@ all:
 	$(MAKE) -C $(VDIR) -f Vtop.mk Vtop__ALL.a verilated.o verilated_vcd_c.o
 	g++ $(CPPFLAGS) $(CXXFLAGS) -c testbench.cpp
 	g++ -o testbench testbench.o $(VLIB) $(VOBJS)
+
+clean:
+	rm -rf obj_dir testbench.o model.vcd testbench
