@@ -9,13 +9,14 @@ Laptop running Linux (or a Linux VM) with g++, Verilator, and GTKWave installed.
 To install on Ubuntu:
 
 ```
-apt install build-essential verilator gtkwave
+apt install build-essential verilator gtkwave git
 ```
 
 To install on Fedora:
 
 ```
-dnf install make automake gcc-c++ verilator gtkwave
+dnf install make automake gcc-c++ verilator gtkwave git
+sudo chmod ugo+x /usr/bin/verilator
 ```
 
 
